@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Paras Bhattrai</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .gal-container {
+            padding: 12px;
+        }
+
+        .gal-item {
+            overflow: hidden;
+            padding: 3px;
+        }
+
+        .gal-item .box {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .box img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            -o-object-fit: cover;
+        }
+
+        .gal-item a:focus {
+            outline: none;
+        }
+
+        .gal-item a:after {
+            content: "\e003";
+            font-family: 'Glyphicons Halflings';
+            opacity: 0;
+            background-color: rgba(0, 0, 0, 0.75);
+            position: absolute;
+            right: 3px;
+            left: 3px;
+            top: 3px;
+            bottom: 3px;
+            text-align: center;
+            line-height: 350px;
+            font-size: 30px;
+            color: #fff;
+            -webkit-transition: all 0.5s ease-in-out 0s;
+            -moz-transition: all 0.5s ease-in-out 0s;
+            transition: all 0.5s ease-in-out 0s;
+        }
+
+        .gal-item a:hover:after {
+            opacity: 1;
+        }
+
+        .modal-open .gal-container .modal {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-open .gal-item .modal-body {
+            padding: 0px;
+        }
+
+        .modal-open .gal-item button.close {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: #000;
+            opacity: 1;
+            color: #fff;
+            z-index: 999;
+            right: -12px;
+            top: -12px;
+            border-radius: 50%;
+            font-size: 15px;
+            border: 2px solid #fff;
+            line-height: 25px;
+            -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.35);
+        }
+
+        .modal-open .gal-item button.close:focus {
+            outline: none;
+        }
+
+        .modal-open .gal-item button.close span {
+            position: relative;
+            top: -3px;
+            font-weight: lighter;
+            text-shadow: none;
+        }
+
+        .gal-container .modal-dialogue {
+            width: 80%;
+        }
+
+        .gal-container .description {
+            position: relative;
+            height: 40px;
+            top: -40px;
+            padding: 10px 25px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            text-align: left;
+        }
+
+        .gal-container .description h4 {
+            margin: 0px;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 20px;
+        }
+
+        .gal-container .modal.fade .modal-dialog {
+            -webkit-transform: scale(0.1);
+            -moz-transform: scale(0.1);
+            -ms-transform: scale(0.1);
+            transform: scale(0.1);
+            top: 100px;
+            opacity: 0;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .gal-container .modal.fade.in .modal-dialog {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+            -webkit-transform: translate3d(0, -100px, 0);
+            transform: translate3d(0, -100px, 0);
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            .gal-container .modal-dialog {
+                width: 55%;
+                margin: 50 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gal-container .modal-content {
+                height: 250px;
+            }
+        }
+
+        /* Footer Style */
+        i.red {
+            color: #BC0213;
+        }
+
+        .gal-container {
+            padding-top: 75px;
+            padding-bottom: 75px;
+        }
+
+        footer {
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        footer a, footer a:hover {
+            color: #88C425;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar" class="active">
+        <div class="sidebar-header">
+            <h3>Paras Bhattrai</h3>
+            <strong>PB</strong>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </button>
+            </li>
+            <li class="active">
+                <a href="#homePara" aria-expanded="false">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#projectsPara">
+                    <i class="glyphicon glyphicon-briefcase"></i>
+                    Projects
+                </a>
+            </li>
+            <li>
+                <a href="#portfolioPara">
+                    <i class="glyphicon glyphicon-link"></i>
+                    Portfolio
+                </a>
+            </li>
+            <li>
+                <a href="#contactPara">
+                    <i class="glyphicon glyphicon-send"></i>
+                    Contact
+                </a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+        <br>
+        <div class="row">
+            <div class="col-xs-12 col-md-7">
+
+                <h2 id="homePara">Introduction</h2>
+                <p>Welcome, my name is <strong>Paras Bhattrai</strong>. I am a software developer from Ashoka University
+                    who loves
+                    to build technical solutions for businesses to help them realize their goals efficiently. I
+                    appreciate good design, simple
+                    and easy to use interfaces.
+                </p>
+                <p>I usually adapt to tech stack that solves the problem at hand most effectively but I usually build
+                    web interfaces in
+                    either Java stack or in Node.js with database in PostgreSQl or Mongo.</p>
+
+
+                <div class="line"></div>
+
+                <h2 id="projectsPara">Projects</h2>
+                <p>
+                <h4>Transits</h4>
+                <p>Node.js app facilitating car-pooling in the University context.<br>
+                Technical highlights :
+                <ul>
+                <li> Wireframes done with wireframes.cc</li>
+                <li> Templating engine - ejs</li>
+                <li> Front-end framework - Materialize.css</li>
+                <li> Back-end stack includes express js framework in Node.js</li>
+                <li> User authentication is done using GMail API from passport dependency</li>
+                <li> Database is made on Mongodb</li>
+                </ul>
+                </p>
+
+                <br>
+                <h4>ERP for cable company</h4>
+                <p>Java web application facilitating resource planning for specific cable company.<br>
+                Technical highlights :
+                <ul>
+                <li> Front-end uses AJAX techniques using jQuery along with animate.css for animations</li>
+                <li> Back-end is done using Java</li>
+                <li> Database is in PostgreSQL</li>
+                </ul>
+                </p>
+
+                <br>
+                <h4>University Philosopy Conference Portal</h4>
+                <p>Web portal for conference witnessing participation from various Indian universities.<br>
+                Technical highlights :
+                <ul>
+                <li> Developed an online portal for facilitating upload of philosophy conference papers using google drive API</li>
+                <li> Front-end is done using semantics.css</li>
+                <li> Back-end is in JavaScript</li>
+                </ul>
+                </p>
+
+                <br>
+                <h4>Twin research project</h4>
+                <p>Created a web app to facilitate data collection for twin research project in India.<br>
+                Technical highlights :
+                <ul>
+                <li> Web app uses jQuery and material design for front end</li>
+                <li> Back-end is made with Java</li>
+                <li> Uses OAuth2 (GMail API) for user authentication</li>
+                </ul>
+                </p>
+
+                <br>
+                <h4>Residence Assistance App</h4>
+                <p>Developed responsive web app for facilitating residence and IT complaint flow for the university
+                    in a team of two developers.<br>
+                Technical highlights :
+                <ul>
+                <li> Implemented OAuth 2 (GMail API) for user authentication</li>
+                <li> Front-end is in Materialize css along with animate.css</li>
+                <li> Back-end uses Java</li>
+                <li> Database is in PostgreSQL</li>
+                </ul>
+                </p>
+
+                <br>
+                <h4>University Election Voting Portal</h4>
+                <p>Designed first web application to enable electronic voting process for both front-end voting and
+                    back-end tallying. The portal has is delivering fair elections for four times since 2014 till March 2016.
+                    The portal is done using JavaScript along with custom css to make the portal fast and reliable<br>
+                </p>
+
+                <br>
+                <h4>Stackd - Book Sharing</h4>
+                <p>Developed back-end for the web portal to facilitate sharing, renting and selling of used books on campus in a team of three developers.
+                    Back end using PHP along with MySQL for database.
+                </p>
+
+
+                </p>
+
+                <div class="line"></div>
+
+                <h2 id="portfolioPara">Portfolio</h2>
+                <div class="container gal-container">
+                    <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#1">
+                                <img src="screenshots/philosopy%20portal.png">
+                            </a>
+                            <div class="modal fade" id="1" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/philosopy%20portal.png">
+                                        </div>
+                                        <!--<div class="col-md-12 description">
+                                            <h4> </h4>
+                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#2">
+                                <img src="screenshots/cable1.png">
+                            </a>
+                            <div class="modal fade" id="2" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/cable1.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#3">
+                                <img src="screenshots/cable_login.png">
+                            </a>
+                            <div class="modal fade" id="3" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/cable_login.png">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#4">
+                                <img src="screenshots/Screenshot%20(16).png">
+                            </a>
+                            <div class="modal fade" id="4" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/Screenshot%20(16).png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#5">
+                                <img src="screenshots/shuttle%20app2.png">
+                            </a>
+                            <div class="modal fade" id="5" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/shuttle%20app2.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#6">
+                                <img src="screenshots/government%20emag.png">
+                            </a>
+                            <div class="modal fade" id="6" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/government%20emag.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#7">
+                                <img src="screenshots/Screenshot%20(5).png">
+                            </a>
+                            <div class="modal fade" id="7" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/Screenshot%20(5).png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#8">
+                                <img src="screenshots/term_obfuscation.png">
+                            </a>
+                            <div class="modal fade" id="8" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/term_obfuscation.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#9">
+                                <img src="screenshots/ra%20portal2.png">
+                            </a>
+                            <div class="modal fade" id="9" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/ra%20portal2.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#10">
+                                <img src="screenshots/shuttle%20app%203.png">
+                            </a>
+                            <div class="modal fade" id="10" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/shuttle%20app%203.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#11">
+                                <img src="screenshots/residence%20portal.png">
+                            </a>
+                            <div class="modal fade" id="11" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/residence%20portal.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#12">
+                                <img src="screenshots/cable3.png">
+                            </a>
+                            <div class="modal fade" id="12" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/cable3.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                        <div class="box">
+                            <a href="#" data-toggle="modal" data-target="#13">
+                                <img src="screenshots/government%20emag2.png">
+                            </a>
+                            <div class="modal fade" id="13" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <div class="modal-body">
+                                            <img src="screenshots/government%20emag2.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="line"></div>
+                <h2 id="contactPara">Contact</h2>
+                <p>
+
+                <h3>Email : </h3><h4><a href="mailto:sivssdn@gmail.com">sivssdn@gmail.com</a></h4>
+                <h3>LinkedIn : </h3><h4><a href="https://www.linkedin.com/in/paras-bhattrai-139b8aa4/">https://www.linkedin.com/in/paras-bhattrai-139b8aa4/</a>
+            </h4>
+                <h3>GitHub : </h3><h4><a href="https://github.com/sivssdn">https://github.com/sivssdn</a></h4>
+
+                </p>
+
+
+            </div>
+
+            <div class="col-xs-12 col-md-5 profile-image">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<!-- Bootstrap Js CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            this.classList.toggle("change");
+        });
+    });
+</script>
+</html>
